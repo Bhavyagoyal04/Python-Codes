@@ -83,7 +83,14 @@ class TicTacToe:
                 print()
                 self.Mark = 'O'
 
-            self.position = int(input("Enter the position between [1-9] where you want to mark: "))
+            try:
+                self.position = int(input("Enter the position between [1-9] where you want to mark: "))
+                if self.position < 1 or self.position > 9:
+                    raise ValueError("Position must be between 1 and 9")
+            except ValueError as e:
+                print("Invalid input:", e)
+                continue
+                
             if self.CheckPosition(self.position):
                 self.board[self.position] = self.Mark
                 self.Player += 1
